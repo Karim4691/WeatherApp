@@ -1,4 +1,4 @@
-import React from 'react'
+
 
 //Capitlizes the first letter of each word
 const TitleCase = (str) => {
