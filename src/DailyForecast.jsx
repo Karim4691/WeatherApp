@@ -13,7 +13,7 @@ const DailyForecast = (props) => {
     daily.style.width = "65%"
     const bg_color = isNight ? 'rgb(25,0,75)' : (isCloudy ? '#808080' : 'rgb(45, 120, 185)')
     daily.style.backgroundColor = bg_color
-  }, [weatherData]) 
+  }, [weatherData, isNight, isCloudy]) 
 
   return (
     <div className={`flex flex-col mt-20 relative rounded-2xl mb-20 bg-starry-night`} id='daily'>

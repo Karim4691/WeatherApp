@@ -31,7 +31,7 @@ const useGetData = (API_KEY, city, country, units, setCountry) => {
             setWeatherData(null)
             console.log('Location could not be found.')
             })
-        }, [city, country, units])
+        }, [city, country, units, API_KEY, setCountry])
 
         return {weatherData, isPending, error}
     }

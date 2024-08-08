@@ -58,7 +58,7 @@ function App() {
       document.body.style.backgroundRepeat = "no-repeat";
       document.body.style.backgroundSize = "cover";
     }
-  }, [weatherData, isCelcius, city, country])
+  }, [weatherData, isCelcius, city, country, isNight, isCloudy])
   
   return (
     <div className='relative'>

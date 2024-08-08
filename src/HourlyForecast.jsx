@@ -29,7 +29,7 @@ const HourlyForecast = (props) => {
     const bg_color = isNight ? 'rgb(25,0,75)' : (isCloudy ? '#808080' : 'rgb(45, 120, 185)')
     hourly.style.backgroundColor = bg_color
     document.getElementById('scroll-container').style.height = "70%"
-  }, [weatherData])
+  }, [weatherData, isNight, isCloudy])
 
   return (
     <div className='relative flex flex-col  mt-20 h-56 justify-center rounded-2xl' id='hourly' >
