@@ -10,7 +10,7 @@ const useGetData = (API_KEY, city, country, units, setCountry) => {
         setIsPending(true)
         setWeatherData(null)
         setError(null)
-        fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city},${country}&limit=1&appid=${API_KEY}`).then(response => response.json())
+        fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city},${country}&limit=1&appid=${API_KEY}`).then(response => response.json())
         .then(coordinates=> {
             const {lat, lon} = coordinates[0]
             setCountry(coordinates[0].country)
