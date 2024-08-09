@@ -9,7 +9,7 @@ const HourlyForecast = (props) => {
   const weatherData = props.weatherData
   const isNight = props.isNight
   const isCloudy = props.isCloudy
-  const hourly = weatherData.hourly.slice(0, 25) //get the hourly forecast for a period of 24h
+  const hourly = weatherData.hourly //get the hourly forecast for a period of 48h
   var uniqueId = 0 
   const offset = weatherData.timezone_offset
 
