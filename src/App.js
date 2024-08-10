@@ -10,17 +10,17 @@ import AdditionalInfo from './AdditionalInfo';
 import { IoIosCloud } from 'react-icons/io';
 
 
-const API_KEY = 'a6df648c3ee83e12975579a47c7bf2aa'
-
-
 function App() {
+  const WEATHER_KEY = process.env.REACT_APP_WEATHER_KEY
+  const PLACES_KEY = process.env.REACT_APP_PLACES_KEY
+
   const [isNight, setIsNight] = useState(null);
   const [isCloudy, setIsCloudy] = useState(null);
   const [city, setCity] = useState('montreal')
   const [country, setCountry] = useState('ca')
   const [isCelcius, setIsCelcius] = useState(true);
   const [units, setUnits] = useState('metric'); //temperature units for api call
-  const {weatherData, isPending, error} = useGetData(API_KEY, city, country, units, setCountry)
+  const {weatherData, isPending, error} = useGetData(WEATHER_KEY, city, country, units, setCountry)
 
 
   const toFahrenheit = () => {
@@ -124,6 +124,7 @@ function App() {
         }
   </div>
   );
+  
 }
 
 export default App

@@ -72,7 +72,7 @@ const AdditionalInfo = (props) => {
       </div>
 
       <div className='flex items-center'> 
-        <LiaCloudscale className='inline-block mr-2 text-white font-black z-10 brightness-200 opacity-100' size={30} />
+        <LiaCloudscale className='inline-block mr-2 text-orange-300' size={30} />
         <div className='flex flex-col items-center'> 
           <div>Pressure </div>
           <div className='text-2xl'>{Math.round(weatherData.current.pressure)}hPa</div>
