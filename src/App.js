@@ -12,7 +12,7 @@ import { IoIosCloud } from 'react-icons/io';
 
 function App() {
   const WEATHER_KEY = process.env.REACT_APP_WEATHER_KEY
-  const PLACES_KEY = process.env.REACT_APP_PLACES_KEY
+  //const PLACES_KEY = process.env.REACT_APP_PLACES_KEY
 
   const [isNight, setIsNight] = useState(null);
   const [isCloudy, setIsCloudy] = useState(null);
