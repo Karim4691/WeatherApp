@@ -18,7 +18,7 @@ const DailyForecast = (props) => {
   return (
     <div className={`flex flex-col mt-20 relative rounded-2xl mb-20 bg-starry-night`} id='daily'>
       <div className='h-5 ml-5 mr-5 mt-2 mb-3 font-extralight text-sm'> 
-        WEEKLY-FORECAST 
+        8-DAY FORECAST 
       </div>
 
       <div className='flex flex-col mb-2'> 

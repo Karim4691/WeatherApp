@@ -16,11 +16,15 @@ const AdditionalInfo = (props) => {
         const info = document.getElementById('info')
         info.style.width = "70%"    
         info.style.height = "200px"
-      }, [])
+
+        if (Math.round(weatherData.current.feels_like) >= 25) {
+          document.getElementById('feels-like').style.color = 'red'
+        }
+      }, [weatherData])
   return (
     <div id='info' className='mt-20 rounded-2xl grid grid-cols-4 justify-items-center gap-1'>
       <div className='flex items-center'> 
-        <FiSunrise className='inline-block mr-2' size={30} />
+        <FiSunrise className='inline-block mr-2 text-yellow-300' size={30} />
         <div className='flex flex-col items-center'> 
           <div>Sunrise </div>
           <div className='text-2xl'>{UnixToRealTime(weatherData.current.sunrise + offset + 14400)}</div>
@@ -28,7 +32,7 @@ const AdditionalInfo = (props) => {
       </div>
 
       <div className='flex items-center'> 
-        <PiThermometerHotLight className='inline-block mr-2' size={30} />
+        <PiThermometerHotLight className='inline-block mr-2 text-blue-300' size={30} id='feels-like'/>
         <div className='flex flex-col items-center'> 
           <div>Feels Like </div>
           <div className='text-2xl'>{Math.round(weatherData.current.feels_like)}&deg;</div>
@@ -36,7 +40,7 @@ const AdditionalInfo = (props) => {
       </div>
 
       <div className='flex items-center'> 
-        <MdSunny className='inline-block mr-2' size={30} />
+        <MdSunny className='inline-block mr-2 text-yellow-400' size={30} />
         <div className='flex flex-col items-center'> 
           <div>UVI </div>
           <div className='text-2xl'>{Math.round(weatherData.current.uvi)}</div>
@@ -44,7 +48,7 @@ const AdditionalInfo = (props) => {
       </div>
 
       <div className='flex items-center'> 
-        <FaWind className='inline-block mr-2' size={30} />
+        <FaWind className='inline-block mr-2 text-gray-100' size={30} />
         <div className='flex flex-col items-center'> 
           <div>Wind </div>
           <div className='text-2xl'>{Math.round(weatherData.current.wind_speed * 3.6)}km/h</div>
@@ -52,7 +56,7 @@ const AdditionalInfo = (props) => {
       </div>
 
       <div className='flex items-center'> 
-        <FiSunset className='inline-block mr-2' size={30} />
+        <FiSunset className='inline-block mr-2 text-orange-400' size={30} />
         <div className='flex flex-col items-center'> 
           <div>Sunset </div>
           <div className='text-2xl'>{UnixToRealTime(weatherData.current.sunset + offset + 14400)}</div>
@@ -60,7 +64,7 @@ const AdditionalInfo = (props) => {
       </div>
 
       <div className='flex items-center'> 
-        <WiHumidity className='inline-block mr-2' size={30} />
+        <WiHumidity className='inline-block mr-2 text-blue-500' size={30} />
         <div className='flex flex-col items-center'> 
           <div>Humidity </div>
           <div className='text-2xl'>{Math.round(weatherData.current.humidity)}%</div>
@@ -68,7 +72,7 @@ const AdditionalInfo = (props) => {
       </div>
 
       <div className='flex items-center'> 
-        <LiaCloudscale className='inline-block mr-2' size={30} />
+        <LiaCloudscale className='inline-block mr-2 text-white font-black z-10 brightness-200 opacity-100' size={30} />
         <div className='flex flex-col items-center'> 
           <div>Pressure </div>
           <div className='text-2xl'>{Math.round(weatherData.current.pressure)}hPa</div>
@@ -76,7 +80,7 @@ const AdditionalInfo = (props) => {
       </div>
 
       <div className='flex items-center'> 
-        <IoIosCloud className='inline-block mr-2' size={30} />
+        <IoIosCloud className='inline-block mr-2 text-gray-300' size={30} />
         <div className='flex flex-col items-center'> 
           <div> Clouds </div>
           <div className='text-2xl'>{Math.round(weatherData.current.clouds)}%</div>

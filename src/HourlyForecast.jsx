@@ -33,7 +33,7 @@ const HourlyForecast = (props) => {
 
   return (
     <div className='relative flex flex-col  mt-20 h-56 justify-center rounded-2xl' id='hourly' >
-      <div className='h-5 absolute top-2 ml-5 font-extralight text-sm'>HOURLY-FORECAST </div>
+      <div className='h-5 absolute top-2 ml-5 font-extralight text-sm'>48-HOUR FORECAST </div>
       <hr className='ml-5 mr-5 mt-1'/>
 
       <div className='flex items-center w-full' id='scroll-container'>
