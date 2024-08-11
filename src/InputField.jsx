@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import ParseInput from './helper_functions/ParseInput'
 import PlacesAutocomplete, {geocodeByAddress, getLatLng} from 'react-places-autocomplete';
 
 const InputField = (props) => {

@@ -31,7 +31,7 @@ const useGetData = (API_KEY, latLon, units, setCountry) => {
             })
     }, [latLon, units, API_KEY, setCountry])
 
-    return {weatherData, isPending, error, setError}
+    return {weatherData, isPending, error}
 }
 
 export default useGetData

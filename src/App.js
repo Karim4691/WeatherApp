@@ -22,7 +22,7 @@ function App() {
   const [isCelcius, setIsCelcius] = useState(true);
   const [units, setUnits] = useState('metric'); //temperature units for api call
   const [latLon, setLatLon] = useState({lat:"45.5031824", lon:"-73.5698065"})
-  const {weatherData, isPending, error, setError} = useGetData(WEATHER_KEY, latLon,units, setCountry)
+  const {weatherData, isPending, error} = useGetData(WEATHER_KEY, latLon,units, setCountry)
 
 
   const toFahrenheit = () => {
