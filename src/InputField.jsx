@@ -44,7 +44,7 @@ const InputField = (props) => {
                 color: 'rgba(156, 163, 175, var(--tw-text-opacity))',
                 backgroundColor: suggestion.active ? "rgba(243, 244, 246, var(--tw-text-opacity))" : "white",
                 cursor: 'pointer',
-                width: '392px',
+                width: '384px',
                 'margin' : "2px 5px 2px 5px",
                 'borderRadius': "5px"
               }
