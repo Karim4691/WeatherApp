@@ -17,8 +17,10 @@ const AdditionalInfo = (props) => {
         info.style.width = "70%"    
         info.style.height = "200px"
 
-        if (Math.round(weatherData.current.feels_like) >= 25) {
+        if (Math.round(weatherData.current.feels_like) >= 30) {
           document.getElementById('feels-like').style.color = 'red'
+        } else if (Math.round(weatherData.current.feels_like) >= 20) {
+          document.getElementById('feels-like').style.color = 'orange'
         }
       }, [weatherData])
   return (

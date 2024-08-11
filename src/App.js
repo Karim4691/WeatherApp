@@ -10,9 +10,10 @@ import AdditionalInfo from './AdditionalInfo';
 import { IoIosCloud } from 'react-icons/io';
 
 
+
+
 function App() {
   const WEATHER_KEY = process.env.REACT_APP_WEATHER_KEY
-  //const PLACES_KEY = process.env.REACT_APP_PLACES_KEY
 
   const [isNight, setIsNight] = useState(null);
   const [isCloudy, setIsCloudy] = useState(null);
@@ -20,7 +21,8 @@ function App() {
   const [country, setCountry] = useState('ca')
   const [isCelcius, setIsCelcius] = useState(true);
   const [units, setUnits] = useState('metric'); //temperature units for api call
-  const {weatherData, isPending, error} = useGetData(WEATHER_KEY, city, country, units, setCountry)
+  const [latLon, setLatLon] = useState({lat:"45.5031824", lon:"-73.5698065"})
+  const {weatherData, isPending, error, setError} = useGetData(WEATHER_KEY, latLon,units, setCountry)
 
 
   const toFahrenheit = () => {
@@ -58,33 +60,34 @@ function App() {
       document.body.style.backgroundRepeat = "no-repeat";
       document.body.style.backgroundSize = "cover";
     }
-  }, [weatherData, isCelcius, city, country, isNight, isCloudy])
+  }, [weatherData, country, city, latLon, isCelcius, isNight, isCloudy])
   
+
   return (
     <div className='relative'>
-      {isPending &&
+      {isPending && 
       <div className='justify-center items-center text-white'>
         <IoIosCloud className='animate-bounce w-full mt-48' size={600} />
       </div>}
       
-        {error && 
-          <div className='flex flex-col items-center justify-center mt-20'> 
-            <InputField setCity={setCity} setCountry={setCountry}/>
-            <p className='text-red-500 w-96 mt-5'>
-              The location entered could not be found. Please ensure that the city and country code (follow the ISO 3166 standard) are seperated by a comma.
-            </p>
-          </div>
-          }
+      {error && 
+        <div className='flex flex-col items-center justify-center mt-20'> 
+          <InputField setLatLon={setLatLon} setCity={setCity}/>
+          <p className='text-red-500 w-96 mt-5'>
+            Something went wrong, please try again. 
+          </p>
+        </div>
+      }
 
       {weatherData && 
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center' >
 
-          <div className='mt-20 relative'>
-            <div className='justify-center inline-block'> 
-              <InputField setCity={setCity} setCountry={setCountry}/>
+          <div className='mt-5 fixed z-10 w-full flex justify-center'>
+            <div className='ml-20 w-fit'> 
+              <InputField setLatLon={setLatLon} setCity={setCity}/>
             </div>
 
-            <div className='inline-block absolute'>
+            <div className='inline-block'>
               <div className='pl-10'>
                 {isCelcius && <div className='flex'>
                   <div className='cursor-pointer opacity-100 hover:text-lg' id='c' onClick={toCelcius}> &deg;C </div> <div className='opacity-75'>&nbsp;|&nbsp; </div>
@@ -102,7 +105,7 @@ function App() {
             </div>
           </div>
 
-          <div className='mt-10 text-5xl flex flex-col items-center relative'> 
+          <div className='mt-20 text-5xl flex flex-col items-center relative'> 
             <div>{Capitalize(city)}, {country.toUpperCase()}</div>
             <div className='flex flex-col items-center'>
               <div className='text-6xl'> {Math.round(weatherData.current.temp)}&deg; </div>

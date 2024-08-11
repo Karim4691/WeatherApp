@@ -1,26 +1,68 @@
 import React, { useState } from 'react'
 import ParseInput from './helper_functions/ParseInput'
+import PlacesAutocomplete, {geocodeByAddress, getLatLng} from 'react-places-autocomplete';
 
 const InputField = (props) => {
-  const [input, setInput] = useState(null);
+  const [input, setInput] = useState('');
+  var unique_id = 120
 
-  
-  const updateLocation = (e) => {
-    e.preventDefault()
-    const {city, country} = ParseInput(input)
-    props.setCity(city)
-    props.setCountry(country)
-    setInput(null)
+  const handleSelect = async (selected) => {
+    try {
+      const results = await geocodeByAddress(selected)
+      const lat_lon = await getLatLng(results[0])
+      const {lat, lng: lon} = lat_lon
+      props.setLatLon({lat, lon})
+      props.setCity(input.split(',')[0])
+      } 
+    catch (error) {
+      setInput('')
+      console.log(error)
+    }
   }
 
+  const onError = (status, clearSuggestions) => {
+    console.log('Google Maps API returned error with status: ', status)
+    clearSuggestions()
+  }
+  
   return (
-    <form className='inline-block' id='form' onSubmit={updateLocation}>
-        <input placeholder='Enter a city and its country code (ex: Montreal, CA)...' className='rounded-md text-gray-400 pl-1' size={40} type='search' onChange={(e) => setInput(e.target.value)}>
-        </input>
+    <PlacesAutocomplete value={input} onChange={setInput} onSelect={handleSelect} onError={onError}>
+      {({getInputProps, suggestions, getSuggestionItemProps}) => (
+        <div> 
+          <input {...getInputProps({
+            placeholder: "Search or enter a city...", 
+            className: 'rounded-md text-gray-400 pl-1',
+            size: "40"
+          })} />
 
-        <input type='submit' hidden/>
-    </form>
+          <div className='bg-white rounded-md'>
+            {suggestions.map((suggestion) => {
+              unique_id++;
+              const style = {
+                '--tw-text-opacity': '1',
+                color: 'rgba(156, 163, 175, var(--tw-text-opacity))',
+                backgroundColor: suggestion.active ? "rgba(243, 244, 246, var(--tw-text-opacity))" : "white",
+                cursor: 'pointer',
+                width: '392px',
+                'margin' : "2px 5px 2px 5px",
+                'borderRadius': "5px"
+              }
+              return (
+                <div key={unique_id} {...getSuggestionItemProps(suggestion, {style})} >
+                  {suggestion.active && setInput(suggestion.description)}
+                  {suggestion.description} 
+                </div>
+              )
+            }) }
+          </div>
+
+        </div>
+        )
+      }
+      </PlacesAutocomplete>
+      
   )
+
 }
 
 export default InputField
