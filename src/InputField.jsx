@@ -7,11 +7,13 @@ const InputField = (props) => {
 
   const handleSelect = async (selected) => {
     try {
+      const addr_array = input.split(',')
+      if (addr_array.length === 1) throw new Error("Must specify city or state")
       const results = await geocodeByAddress(selected)
       const lat_lon = await getLatLng(results[0])
       const {lat, lng: lon} = lat_lon
       props.setLatLon({lat, lon})
-      props.setCity(input.split(',')[0])
+      props.setCity(addr_array[0])
       } 
     catch (error) {
       setInput('')
