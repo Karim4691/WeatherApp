@@ -124,7 +124,7 @@ function App() {
             </div>
           </div>
 
-          <AdditionalInfo weatherData={weatherData} isNight={isNight} isCloudy={isCloudy}/>
+          <AdditionalInfo weatherData={weatherData} isNight={isNight} isCloudy={isCloudy} isCelcius={isCelcius}/>
 
           <HourlyForecast weatherData={weatherData} isNight={isNight} isCloudy={isCloudy}/>
 

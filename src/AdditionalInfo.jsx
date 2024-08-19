@@ -10,6 +10,7 @@ import { IoIosCloud } from 'react-icons/io';
 
 const AdditionalInfo = (props) => {
     const weatherData = props.weatherData
+    const isCelcius = props.isCelcius
     const offset = weatherData.timezone_offset
     
     useEffect(() => {
@@ -17,16 +18,24 @@ const AdditionalInfo = (props) => {
         info.style.width = "70%"    
         info.style.height = "200px"
 
-        if (Math.round(weatherData.current.feels_like) >= 30) {
-          document.getElementById('feels-like').style.color = 'red'
-        } else if (Math.round(weatherData.current.feels_like) >= 20) {
-          document.getElementById('feels-like').style.color = 'orange'
+        if (isCelcius) {
+          if (Math.round(weatherData.current.feels_like) >= 30) {
+            document.getElementById('feels-like').style.color = 'red'
+          } else if (Math.round(weatherData.current.feels_like) >= 20) {
+            document.getElementById('feels-like').style.color = 'orange'
+          }
+        } else {
+          if (Math.round(weatherData.current.feels_like) >= 86) {
+            document.getElementById('feels-like').style.color = 'red'
+          } else if (Math.round(weatherData.current.feels_like) >= 68) {
+            document.getElementById('feels-like').style.color = 'orange'
+          }
         }
       }, [weatherData])
   return (
     <div id='info' className='mt-20 rounded-2xl grid grid-cols-4 justify-items-center gap-1'>
       <div className='flex items-center'> 
-        <FiSunrise className='inline-block mr-2 text-yellow-300 md:size-8 sm:size-6 size-4'  />
+        <FiSunrise className='inline-block mr-2 text-yellow-300 md:size-8 size-6'  />
         <div className='flex flex-col items-center'> 
           <div className='md:text-xl text-xs'>Sunrise </div>
           <div className='md:text-2xl sm:text-base text-sm'>{UnixToRealTime(weatherData.current.sunrise + offset + 14400)}</div>
@@ -58,7 +67,7 @@ const AdditionalInfo = (props) => {
       </div>
 
       <div className='flex items-center'> 
-        <FiSunset className='inline-block mr-2 text-orange-400 md:size-8 sm:size-6 size-4'  />
+        <FiSunset className='inline-block mr-2 text-orange-400 md:size-8 size-6'  />
         <div className='flex flex-col items-center'> 
           <div className='md:text-xl text-xs'>Sunset </div>
           <div className='md:text-2xl sm:text-base text-sm'>{UnixToRealTime(weatherData.current.sunset + offset + 14400)}</div>
