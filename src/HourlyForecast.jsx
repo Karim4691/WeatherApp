@@ -26,8 +26,11 @@ const HourlyForecast = (props) => {
   useEffect(() => {
     const hourly = document.getElementById('hourly')
     hourly.style.width = "65%"
-    const bg_color = isNight ? 'rgb(25,0,75)' : (isCloudy ? '#808080' : 'rgb(45, 120, 185)')
+    var bg_color;
+    if (isNight != null) {
+    bg_color = isNight ? 'rgb(25,0,75)' : (isCloudy ? '#808080' : 'rgb(45, 120, 185)')
     hourly.style.backgroundColor = bg_color
+    }
     document.getElementById('scroll-container').style.height = "70%"
   }, [weatherData, isNight, isCloudy])
 

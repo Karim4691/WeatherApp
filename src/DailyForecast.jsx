@@ -11,8 +11,11 @@ const DailyForecast = (props) => {
   useEffect(() => {
     const daily = document.getElementById('daily')
     daily.style.width = "65%"
-    const bg_color = isNight ? 'rgb(25,0,75)' : (isCloudy ? '#808080' : 'rgb(45, 120, 185)')
+    var bg_color;
+    if (isNight != null) {
+    bg_color = isNight ? 'rgb(25,0,75)' : (isCloudy ? '#808080' : 'rgb(45, 120, 185)')
     daily.style.backgroundColor = bg_color
+    }
   }, [weatherData, isNight, isCloudy]) 
 
   return (

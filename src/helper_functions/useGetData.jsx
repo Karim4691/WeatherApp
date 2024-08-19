@@ -12,13 +12,13 @@ const useGetData = (API_KEY, latLon, units, setCountry) => {
         const {lat, lon} = latLon
         fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${units}`) 
         .then(response => response.json())
-        .then(data => {
-            setWeatherData(data)
+        .then(data1 => {
             return fetch(`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${API_KEY}`)
             .then((resp) => resp.json())
-            .then(data => {
-                setCountry(data[0].country)
+            .then(data2 => {
                 setIsPending(false)
+                setWeatherData(data1)
+                setCountry(data2[0].country)
                 setError(false)
             })
         })       

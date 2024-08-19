@@ -24,7 +24,6 @@ function App() {
   const [latLon, setLatLon] = useState({lat:"45.5031824", lon:"-73.5698065"})
   const {weatherData, isPending, error} = useGetData(WEATHER_KEY, latLon,units, setCountry)
 
-
   const toFahrenheit = () => {
     if (isCelcius === false) return
     setUnits('imperial')
@@ -38,7 +37,6 @@ function App() {
   }
 
   useEffect( () =>{
-    //determine bg image
      if (weatherData) {
       var bg_img;
       if (weatherData.current.weather[0].icon.charAt(2) === 'n') {
@@ -49,17 +47,26 @@ function App() {
       }
       if (weatherData.current.weather[0].id > 799 && weatherData.current.weather[0].id < 803) {
         setIsCloudy(false)
-        if (!isNight) bg_img = 'blue-sky.jpg'
-      } else {
+        if (!isNight) {
+          bg_img = 'blue-sky.jpg'
+        }
+      } else if (isNight != null){
         setIsCloudy(true)
-        if (!isNight) bg_img = 'cloudy.jpg'
+        if (!isNight) {
+          bg_img = 'cloudy.jpg'
+        }
       }
-
-
+    
       document.body.style.backgroundImage =  `url(./background-images/${bg_img})`;
-      document.body.style.backgroundRepeat = "no-repeat";
-      document.body.style.backgroundSize = "cover";
-    }
+ 
+      if (isNight) {
+        document.body.style.backgroundColor = "rgb(25,0,75)"
+      } else if (isCloudy) {
+        document.body.style.backgroundColor = '#808080'
+      } else if (isNight != null){
+        document.body.style.backgroundColor = "rgb(45, 120, 185)"
+      }
+     }
   }, [weatherData, country, city, latLon, isCelcius, isNight, isCloudy])
   
 
@@ -105,15 +112,15 @@ function App() {
             </div>
           </div>
 
-          <div className='mt-20 text-5xl flex flex-col items-center relative'> 
-            <div>{Capitalize(city)}, {country.toUpperCase()}</div>
+          <div className='mt-20 flex flex-col items-center relative'> 
+            <div className='md:text-3xl sm:text-xl text-sm'>{Capitalize(city)}, {country.toUpperCase()}</div>
             <div className='flex flex-col items-center'>
-              <div className='text-6xl'> {Math.round(weatherData.current.temp)}&deg; </div>
-              <div className='text-lg'> {TitleCase(weatherData.current.weather[0].description)} </div>
+              <div className='md:text-5xl sm:text-3xl text-2xl'> {Math.round(weatherData.current.temp)}&deg; </div>
+              <div className='md:text-lg sm:text-sm'> {TitleCase(weatherData.current.weather[0].description)} </div>
             </div>
             <div className='flex justify-around items-center'> 
-              <div className='text-xl'> H:{Math.round(weatherData.daily[0].temp.max)}&deg; &nbsp;&nbsp;&nbsp;</div>
-              <div className='text-xl'> L:{Math.round(weatherData.daily[0].temp.min)}&deg; </div>
+              <div className='md:text-xl sm:text-sm'> H:{Math.round(weatherData.daily[0].temp.max)}&deg; &nbsp;&nbsp;&nbsp;</div>
+              <div className='md:text-xl sm:text-sm'> L:{Math.round(weatherData.daily[0].temp.min)}&deg; </div>
             </div>
           </div>
 

@@ -4,4 +4,8 @@
 
 body {
     color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 100%;
+    overflow-x: hidden;
 }

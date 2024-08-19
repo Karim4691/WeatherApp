@@ -3,7 +3,7 @@ import PlacesAutocomplete, {geocodeByAddress, getLatLng} from 'react-places-auto
 
 const InputField = (props) => {
   const [input, setInput] = useState('');
-  var unique_id = 120
+  var unique_id = 200
 
   const handleSelect = async (selected) => {
     try {
@@ -25,15 +25,14 @@ const InputField = (props) => {
     console.log('Google Maps API returned error with status: ', status)
     clearSuggestions()
   }
-  
+
   return (
-    <PlacesAutocomplete value={input} onChange={setInput} onSelect={handleSelect} onError={onError}>
+    <PlacesAutocomplete value={input} onChange={setInput} onSelect={handleSelect} onError={onError} >
       {({getInputProps, suggestions, getSuggestionItemProps}) => (
         <div> 
           <input {...getInputProps({
             placeholder: "Search or enter a city...", 
-            className: 'rounded-md text-gray-400 pl-1',
-            size: "40"
+            className: 'rounded-md text-gray-400 pl-1 md:w-96 sm:w-48'
           })} />
 
           <div className='bg-white rounded-md'>
@@ -49,7 +48,7 @@ const InputField = (props) => {
                 'borderRadius': "5px"
               }
               return (
-                <div key={unique_id} {...getSuggestionItemProps(suggestion, {style})} >
+                <div {...getSuggestionItemProps(suggestion, {style})} >
                   {suggestion.active && setInput(suggestion.description)}
                   {suggestion.description} 
                 </div>
