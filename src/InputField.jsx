@@ -36,7 +36,6 @@ const InputField = (props) => {
 
           <div className='bg-white rounded-md'>
             {suggestions.map((suggestion) => {
-              unique_id++;
               const style = {
                 '--tw-text-opacity': '1',
                 color: 'rgba(156, 163, 175, var(--tw-text-opacity))',
