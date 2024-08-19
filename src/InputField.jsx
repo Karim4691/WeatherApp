@@ -3,7 +3,6 @@ import PlacesAutocomplete, {geocodeByAddress, getLatLng} from 'react-places-auto
 
 const InputField = (props) => {
   const [input, setInput] = useState('');
-  var unique_id = 200
 
   const handleSelect = async (selected) => {
     try {
