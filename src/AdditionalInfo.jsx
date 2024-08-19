@@ -31,7 +31,7 @@ const AdditionalInfo = (props) => {
             document.getElementById('feels-like').style.color = 'orange'
           }
         }
-      }, [weatherData])
+      }, [weatherData, isCelcius])
   return (
     <div id='info' className='mt-20 rounded-2xl grid grid-cols-4 justify-items-center gap-1'>
       <div className='flex items-center'> 
