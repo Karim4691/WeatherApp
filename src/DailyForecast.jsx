@@ -27,7 +27,7 @@ const DailyForecast = (props) => {
       <div className='flex flex-col mb-2'> 
         {weatherData.daily.map((data) => {
           const icon_url = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
-          const date = (new Date((data.dt + offset + 14400)* 1000)).toDateString()
+          const date = (new Date((data.dt + offset + 18000)* 1000)).toDateString()
           
           uniqueId++
           return (

@@ -38,7 +38,7 @@ const AdditionalInfo = (props) => {
         <FiSunrise className='inline-block mr-2 text-yellow-300 md:size-8 sm:size-6 size-4'  />
         <div className='flex flex-col items-center'> 
           <div className='md:text-xl text-xs'>Sunrise </div>
-          <div className='md:text-2xl sm:text-base text-sm'>{UnixToRealTime(weatherData.current.sunrise + offset + 14400)}</div>
+          <div className='md:text-2xl sm:text-base text-sm'>{UnixToRealTime(weatherData.current.sunrise + offset + 18000)}</div>
         </div>
       </div>
 
@@ -70,7 +70,7 @@ const AdditionalInfo = (props) => {
         <FiSunset className='inline-block mr-2 text-orange-400 md:size-8 sm:size-6 size-4'  />
         <div className='flex flex-col items-center'> 
           <div className='md:text-xl text-xs'>Sunset </div>
-          <div className='md:text-2xl sm:text-base text-sm'>{UnixToRealTime(weatherData.current.sunset + offset + 14400)}</div>
+          <div className='md:text-2xl sm:text-base text-sm'>{UnixToRealTime(weatherData.current.sunset + offset + 18000)}</div>
         </div>
       </div>
 
