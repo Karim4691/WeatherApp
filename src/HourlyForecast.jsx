@@ -46,7 +46,7 @@ const HourlyForecast = (props) => {
           {hourly.map((data) => {
             uniqueId = uniqueId + 1
             const icon_url = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
-            const hour = UnixToRealHour(data.dt + offset + 14400) 
+            const hour = UnixToRealHour(data.dt + offset + 18000) 
             return (
               <div className='inline-block' key={uniqueId}>
                 <div  className='flex flex-col items-center mt-12'>
