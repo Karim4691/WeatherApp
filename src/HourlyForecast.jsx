@@ -12,7 +12,7 @@ const HourlyForecast = (props) => {
   const hourly = weatherData.hourly //get the hourly forecast for a period of 48h
   var uniqueId = 0 
   const d = new Date()
-  const local_diff = d.getTimeZoneOffset()
+  const local_diff = d.getTimezoneOffset()
   const offset = weatherData.timezone_offset
 
   const scrollLeft = () => {

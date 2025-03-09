@@ -6,7 +6,7 @@ const DailyForecast = (props) => {
   const isCloudy = props.isCloudy
   var uniqueId = 99
   const d = new Date()
-  const local_diff = d.getTimeZoneOffset()
+  const local_diff = d.getTimezoneOffset()
   const offset = weatherData.timezone_offset
 
 

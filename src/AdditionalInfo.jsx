@@ -12,7 +12,7 @@ const AdditionalInfo = (props) => {
     const weatherData = props.weatherData
     const isCelcius = props.isCelcius
     const d = new Date()
-    const local_diff = d.getTimeZoneOffset()
+    const local_diff = d.getTimezoneOffset()
     const offset = weatherData.timezone_offset
     
     useEffect(() => {
