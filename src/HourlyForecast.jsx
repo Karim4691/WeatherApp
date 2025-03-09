@@ -11,6 +11,8 @@ const HourlyForecast = (props) => {
   const isCloudy = props.isCloudy
   const hourly = weatherData.hourly //get the hourly forecast for a period of 48h
   var uniqueId = 0 
+  const d = new Date()
+  const local_diff = d.getTimeZoneOffset()
   const offset = weatherData.timezone_offset
 
   const scrollLeft = () => {
@@ -46,7 +48,7 @@ const HourlyForecast = (props) => {
           {hourly.map((data) => {
             uniqueId = uniqueId + 1
             const icon_url = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
-            const hour = UnixToRealHour(data.dt + offset + 18000) 
+            const hour = UnixToRealHour(data.dt + offset + (local_diff * 60)) 
             return (
               <div className='inline-block' key={uniqueId}>
                 <div  className='flex flex-col items-center mt-12'>
@@ -67,8 +69,6 @@ const HourlyForecast = (props) => {
 
         <MdChevronRight size={40} onClick={scrollRight} className='cursor-pointer opacity-50 hover:opacity-100 right-5'/>
         </div>
-
-
     </div>
   )
 }

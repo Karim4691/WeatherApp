@@ -5,6 +5,8 @@ const DailyForecast = (props) => {
   const isNight = props.isNight
   const isCloudy = props.isCloudy
   var uniqueId = 99
+  const d = new Date()
+  const local_diff = d.getTimeZoneOffset()
   const offset = weatherData.timezone_offset
 
 
@@ -27,7 +29,7 @@ const DailyForecast = (props) => {
       <div className='flex flex-col mb-2'> 
         {weatherData.daily.map((data) => {
           const icon_url = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
-          const date = (new Date((data.dt + offset + 18000)* 1000)).toDateString()
+          const date = (new Date((data.dt + offset + (local_diff * 60))* 1000)).toDateString()
           
           uniqueId++
           return (
